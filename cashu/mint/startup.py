@@ -6,10 +6,13 @@ from cashu.core.settings import CASHU_DIR, LIGHTNING
 from cashu.lightning import WALLET
 from cashu.mint.migrations import m001_initial
 
-from . import ledger
+from cashu.core.settings import MINT_PRIVATE_KEY
+from cashu.mint.ledger import Ledger
+from cashu.core.db import Database
 
 
-async def load_ledger():
+async def startup_mint():
+    ledger = Ledger(MINT_PRIVATE_KEY, Database("mint", "data/mint"))
     await asyncio.wait([m001_initial(ledger.db)])
     await ledger.load_used_proofs()
 

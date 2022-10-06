@@ -68,5 +68,5 @@ app.include_router(router=router)
 
 
 @app.on_event("startup")
-async def startup_load_ledger():
-    await load_ledger()
+async def startup_mint():
+    await startup_mint()

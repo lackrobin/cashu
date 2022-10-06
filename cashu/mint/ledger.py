@@ -29,13 +29,13 @@ from cashu.mint.crud import (
 
 
 class Ledger:
-    def __init__(self, secret_key: str, db: str):
+    def __init__(self, secret_key: str, db: Database):
         self.proofs_used: Set[str] = set()
 
         self.master_key = secret_key
         self.keys = self._derive_keys(self.master_key)
         self.pub_keys = self._derive_pubkeys(self.keys)
-        self.db: Database = Database("mint", db)
+        self.db = db
 
     async def load_used_proofs(self):
         self.proofs_used = set(await get_proofs_used(db=self.db))
