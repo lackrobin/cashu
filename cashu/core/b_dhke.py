@@ -3,11 +3,11 @@
 """
 Implementation of https://gist.github.com/RubenSomsen/be7a4760dd4596d06963d67baf140406
 
-Alice (Client):
+Alice (Mint):
 A = a*G
 return A
 
-Bob (Mint):
+Bob (Client):
 Y = hash_to_curve(secret_message)
 r = random blinding factor
 B'= Y + r*G
